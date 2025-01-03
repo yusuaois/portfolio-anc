@@ -7,9 +7,9 @@ type Props = {};
 export default function About({}: Props) {
   return (
     <motion.div
-    initial={{opacity: 0}}
-    whileInView={{opacity: 1}}
-    transition={{duration: 1.5}}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
       className="
       flex flex-col relative h-screen text-center md:text-left
         md:flex-row max-w-7xl px-10 
@@ -43,7 +43,17 @@ export default function About({}: Props) {
           <span className="underline decoration-[#F7AB0A]/50">little</span>{" "}
           background
         </h4>
-        <p className="text-base"></p>
+        <p className="text-base">
+          Hi, I'm Liang Haoxuan! I have a strong passion for algorithms and
+          coding, and I always strive to approach problems with high energy and
+          efficiency. With a keen interest in both front-end and back-end
+          development, I enjoy tackling complex challenges and continually
+          improving my skills. I believe in maintaining a high-spirited mindset,
+          which helps me stay motivated and focused on achieving my goals.
+          Whether it's solving algorithmic problems or building robust
+          applications, I thrive in environments that push my abilities to the
+          next level.
+        </p>
       </div>
     </motion.div>
   );
