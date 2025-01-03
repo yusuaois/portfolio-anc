@@ -28,17 +28,17 @@ export default function Header({}: Props) {
       >
         {/* Social Icons */}
         <SocialIcon
-          url="https://linkedin.com/in/couetilc"
+          url="https://leetcode.cn/u/yusuaois/"
           fgColor="gray"
           bgColor="transparent"
         />
         <SocialIcon
-          url="https://linkedin.com/in/couetilc"
+          url="https://space.bilibili.com/37213096"
           fgColor="gray"
           bgColor="transparent"
         />
         <SocialIcon
-          url="https://linkedin.com/in/couetilc"
+          url="https://github.com/yusuaois"
           fgColor="gray"
           bgColor="transparent"
         />
