@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-
+import cppLogo from "@/public/img/cpp_logo.png"
 type Props = {
   directionLeft?: boolean; // if true, skill will be on the left side
 };
