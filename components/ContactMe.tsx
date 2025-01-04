@@ -1,8 +1,23 @@
 import React from "react";
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
+import ReactDOM from "react-dom";
+import { useForm, SubmitHandler } from "react-hook-form";
 type Props = {};
 
+interface IFormInput {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
 export default function ContactMe({}: Props) {
+  const { register, handleSubmit } = useForm<IFormInput>();
+  const onSubmit: SubmitHandler<IFormInput> = (formData) => {
+    window.location.href =
+      `mailto:yusuaois@outlook.com?subject= ${formData.subject} &body=Hi, my name is ${formData.name}. ${formData.message} (${formData.email})`;
+  };
+
   return (
     <div
       className="h-screen flex relative flex-col text-center md:text-left md:flex-row 
@@ -35,13 +50,35 @@ export default function ContactMe({}: Props) {
         </div>
 
         {/* Send Me */}
-        <form className="flex flex-col space-y-2 w-fit mx-auto">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col space-y-2 w-fit mx-auto"
+        >
           <div className="flex space-x-2">
-            <input placeholder="Name" className="contactInput" type="text" />
-            <input placeholder="Email" className="contactInput" type="email" />
+            <input
+              {...register("name")}
+              placeholder="Name"
+              className="contactInput"
+              type="text"
+            />
+            <input
+              {...register("email")}
+              placeholder="Email"
+              className="contactInput"
+              type="email"
+            />
           </div>
-          <input placeholder="Subject" className="contactInput" type="text" />
-          <textarea placeholder="Message" className="contactInput" />
+          <input
+            {...register("subject")}
+            placeholder="Subject"
+            className="contactInput"
+            type="text"
+          />
+          <textarea
+            {...register("message")}
+            placeholder="Message"
+            className="contactInput"
+          />
           <button
             type="submit"
             className="bg-[#F7AB0A] py-5 px-10 rounded-md text-black font-bold text-lg"
