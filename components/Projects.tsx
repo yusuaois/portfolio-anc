@@ -19,7 +19,8 @@ export default function Projects({}: Props) {
       </h3>
       <div
         className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x 
-      snap-mandatory z-20 "
+      snap-mandatory z-20 scrollbar scrollbar-thin scrollbar-track-gray-400/20 
+      scrollbar-thumb-[#F7AB0A]/80"
       >
         {projects.map((project, i) => (
           <div
@@ -28,10 +29,10 @@ export default function Projects({}: Props) {
           >
             {/* Project Img */}
             <motion.img
-            initial={{ y: -300, opacity: 0 }}
-            transition={{ duration: 1.2 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
+              initial={{ y: -300, opacity: 0 }}
+              transition={{ duration: 1.2 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
               src="https://cdn.sanity.io/images/ltuexkre/production/af7ca99b5a796d0698cf9121a4a0795b5022b6be-666x375.png"
               alt=""
             />
