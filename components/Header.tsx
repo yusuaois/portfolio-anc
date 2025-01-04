@@ -44,35 +44,35 @@ export default function Header({}: Props) {
           bgColor="transparent"
         />
       </motion.div>
+      <Link href="#contact">
+        <motion.div
+          initial={{
+            opacity: 0,
+            x: 500,
+            scale: 0.5,
+          }}
+          animate={{
+            opacity: 1,
+            x: 0,
+            scale: 1,
+          }}
+          transition={{
+            duration: 1.5,
+          }}
+          className="flex flex-row items-center text-gray-300 cursor-pointer"
+        >
+          <SocialIcon
+            className="cursor-pointer"
+            network="email"
+            fgColor="gray"
+            bgColor="transparent"
+          />
 
-      <motion.div
-        initial={{
-          opacity: 0,
-          x: 500,
-          scale: 0.5,
-        }}
-        animate={{
-          opacity: 1,
-          x: 0,
-          scale: 1,
-        }}
-        transition={{
-          duration: 1.5,
-        }}
-        className="flex flex-row items-center text-gray-300 cursor-pointer"
-      >
-        <SocialIcon
-          className="cursor-pointer"
-          network="email"
-          fgColor="gray"
-          bgColor="transparent"
-        />
-        <Link href="#contact">
           <p className="uppercase hidden md:inline-flex text-sm text-gray-400">
             Get In Touch
           </p>
-        </Link>
-      </motion.div>
+        </motion.div>
+      </Link>
     </header>
   );
 }
