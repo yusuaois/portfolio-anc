@@ -1,8 +1,8 @@
+'use client'
 import { motion } from "framer-motion";
 import React from "react";
-import aboutImage from "../public/img/About.jpg";
 import { PageInfo } from "@/typings";
-import { urlFor } from "@/sanity";
+import { urlFor } from "@/sanity/env";
 
 type Props = { pageInfo: PageInfo };
 

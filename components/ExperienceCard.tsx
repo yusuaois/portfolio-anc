@@ -1,8 +1,8 @@
+
 import { motion } from "framer-motion";
 import React from "react";
-import XiaomiImg from "../public/img/Xiaomi.png";
 import { Experience } from "@/typings";
-import { urlFor } from "@/sanity";
+import { urlFor } from "@/sanity/env";
 
 type Props = {
   experience: Experience;
@@ -46,7 +46,7 @@ export default function ExperienceCard({ experience }: Props) {
 
         {/* 固定高度 */}
         <ul
-          className="list-disc space-y-4 ml-5 text-lg h-96 overflow-y-scroll
+          className="list-disc space-y-4 ml-5 text-lg overflow-y-scroll
         pr-5 scrollbar-thin scrollbar-track-black scrollbar-thumb-[#F7AB0A]/80"
         >
           {experience.points?.map((point, i) => <li key={i}>{point}</li>)}

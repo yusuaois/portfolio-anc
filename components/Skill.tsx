@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Skill as SkillType } from "@/typings";
-import { urlFor } from "@/sanity";
+import { urlFor } from "@/sanity/env";
 type Props = {
   skill: SkillType;
   directionLeft?: boolean; // if true, skill will be on the left side

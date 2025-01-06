@@ -1,4 +1,3 @@
-"use server"; // 只在客户端渲染
 
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -9,28 +8,20 @@ import Projects from "@/components/Projects";
 import ContactMe from "@/components/ContactMe";
 import Link from "next/link";
 import Logo from "@/public/img/Logo.jpg";
-import { GetStaticProps } from "next";
 import { Experience, PageInfo, Project, Skill, Social } from "@/typings";
 import { fetchPageInfos } from "@/utils/fetchPageInfo";
 import { fetchExperiences } from "@/utils/fetchExperiences";
 import { fetchProjects } from "@/utils/fetchProjects";
 import { fetchSkills } from "@/utils/fetchSkills";
 import { fetchSocials } from "@/utils/fetchSocials";
-type Props = {
-  pageInfo: PageInfo;
-  experiences: Experience[];
-  skills: Skill[];
-  projects: Project[];
-  socials: Social[];
-};
 
-export default function Home({
-  pageInfo,
-  experiences,
-  skills,
-  projects,
-  socials,
-}: Props) {
+export default async function Home() {
+  const pageInfo: PageInfo = await fetchPageInfos();
+  const experiences: Experience[] = await fetchExperiences();
+  const skills: Skill[] = await fetchSkills();
+  const projects: Project[] = await fetchProjects();
+  const socials: Social[] = await fetchSocials();
+
   return (
     <div
       className="bg-[rgb(36,36,36)] text-white h-screen w-screen snap-y snap-mandatory 
@@ -57,12 +48,12 @@ export default function Home({
 
       {/* Skills */}
       <section id="skills" className="snap-start">
-        <Skills skills={skills}/>
+        <Skills skills={skills} />
       </section>
 
       {/* Projects */}
       <section id="projects" className="snap-start">
-        <Projects projects={projects}/>
+        <Projects projects={projects} />
       </section>
 
       {/* Contact Me */}
@@ -85,22 +76,3 @@ export default function Home({
     </div>
   );
 }
-
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  //utils/fetchPageInfo.ts
-  const pageInfo: PageInfo = await fetchPageInfos();
-  const experiences: Experience[] = await fetchExperiences();
-  const skills: Skill[] = await fetchSkills();
-  const projects: Project[] = await fetchProjects();
-  const socials: Social[] = await fetchSocials();
-
-  return {
-    props: {
-      pageInfo,
-      experiences,
-      skills,
-      projects,
-      socials,
-    },
-  };
-};

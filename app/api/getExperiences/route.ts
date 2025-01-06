@@ -1,4 +1,4 @@
-import { sanityClient } from "@/sanity";
+import { sanityClient } from "@/sanity/env";
 import { Experience } from "@/typings";
 import { groq } from "next-sanity";
 import { NextResponse } from "next/server";

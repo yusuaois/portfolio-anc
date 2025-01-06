@@ -1,8 +1,8 @@
+'use client'
 import { motion } from "framer-motion";
 import React from "react";
 import ExperienceCard from "./ExperienceCard";
 import { Experience } from "@/typings";
-import { experience } from "@/sanity/schemaTypes/experience";
 
 type Props = {
   experiences: Experience[]

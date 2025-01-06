@@ -1,7 +1,8 @@
+"use client"; // 只在客户端渲染
+
 import React from "react";
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
-import ReactDOM from "react-dom";
-import { useForm, SubmitHandler } from "react-hook-form";
+import {  SubmitHandler, useForm } from "react-hook-form";
 type Props = {};
 
 interface IFormInput {

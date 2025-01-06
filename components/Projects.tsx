@@ -1,4 +1,5 @@
-import { urlFor } from "@/sanity";
+"use client";
+import { urlFor } from "@/sanity/env";
 import { Project } from "@/typings";
 import { motion } from "framer-motion";
 
@@ -14,16 +15,17 @@ export default function Projects({ projects }: Props) {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className="h-screen relative flex overflow-hidden flex-col text-left md:flex-row
-     max-w-full justify-evenly mx-auto items-center z-0"
+      className="h-screen relative flex overflow-hidden flex-col text-left
+      md:flex-row max-w-full justify-evenly mx-auto items-center z-0"
     >
       <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
         Projects
       </h3>
+      
       <div
         className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x 
       snap-mandatory z-20 scrollbar-thin scrollbar-track-gray-400/20 
-      scrollbar-thumb-[#F7AB0A]/80"
+      scrollbar-thumb-[#F7AB0A]/80 mt-20"
       >
         {projects?.map((project, i) => (
           <div
@@ -43,8 +45,8 @@ export default function Projects({ projects }: Props) {
             <div className="space-y-10 px-0 md:px-10 max-w-6xl">
               <h4 className="text-4xl font-semibold text-center">
                 <span className="underline decoration-[#F7AB0A]/50">
-                  Case Study {i + 1} of {projects.length}:{" "}
-                </span>
+                  Case Study {i + 1} of {projects.length}:
+                </span>{" "}
                 {/* Project Title */}
                 {project?.title}
               </h4>
