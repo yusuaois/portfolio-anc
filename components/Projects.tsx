@@ -1,11 +1,14 @@
+import { urlFor } from "@/sanity";
+import { Project } from "@/typings";
 import { motion } from "framer-motion";
-import { div } from "framer-motion/client";
+
 import React from "react";
 
-type Props = {};
+type Props = {
+  projects: Project[];
+};
 
-export default function Projects({}: Props) {
-  const projects = [1, 2, 3, 4, 5];
+export default function Projects({ projects }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -22,8 +25,9 @@ export default function Projects({}: Props) {
       snap-mandatory z-20 scrollbar-thin scrollbar-track-gray-400/20 
       scrollbar-thumb-[#F7AB0A]/80"
       >
-        {projects.map((project, i) => (
+        {projects?.map((project, i) => (
           <div
+            key={project._id}
             className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 
           items-center justify-center p-20 md:p-44 h-screen"
           >
@@ -33,7 +37,7 @@ export default function Projects({}: Props) {
               transition={{ duration: 1.2 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
-              src="https://cdn.sanity.io/images/ltuexkre/production/af7ca99b5a796d0698cf9121a4a0795b5022b6be-666x375.png"
+              src={urlFor(project?.image).url()}
               alt=""
             />
             <div className="space-y-10 px-0 md:px-10 max-w-6xl">
@@ -42,19 +46,23 @@ export default function Projects({}: Props) {
                   Case Study {i + 1} of {projects.length}:{" "}
                 </span>
                 {/* Project Title */}
-                UPS Clone
+                {project?.title}
               </h4>
+
+              <div className="flex items-center space-x-2 justify-center">
+                {project?.technologies.map((technology) => (
+                  <img
+                    className="h-10 w-10"
+                    key={technology._id}
+                    src={urlFor(technology.image).url()}
+                    alt=""
+                  />
+                ))}
+              </div>
 
               <p className="text-lg text-center md:text-left">
                 {/* Project Summary English*/}
-                The Uber Clone project is a ride-sharing application that mimics
-                the core functionality of Uber. The platform connects riders
-                with nearby drivers, enabling users to request rides, track
-                their journey, and make payments seamlessly through a mobile or
-                web interface. The app aims to provide an intuitive, real-time
-                transportation solution with features such as GPS-based
-                tracking, fare estimation, ride history, and secure payment
-                integration.
+                {project?.summary}
               </p>
             </div>
           </div>

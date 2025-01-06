@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
+import { PageInfo } from "@/typings";
+
+type Props = {
+  pageInfo: PageInfo;
+};
 
 export const metadata: Metadata = {
   title: "AnC's Portfolio",

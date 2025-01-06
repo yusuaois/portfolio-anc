@@ -1,10 +1,14 @@
 import { motion } from "framer-motion";
 import React from "react";
 import ExperienceCard from "./ExperienceCard";
+import { Experience } from "@/typings";
+import { experience } from "@/sanity/schemaTypes/experience";
 
-type Props = {};
+type Props = {
+  experiences: Experience[]
+};
 
-export default function WorkExperience({}: Props) {
+export default function WorkExperience({experiences}: Props) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -24,10 +28,9 @@ export default function WorkExperience({}: Props) {
         className="w-full flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory 
         scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80 mt-20"
       >
-        <ExperienceCard />
-        <ExperienceCard />
-        <ExperienceCard />
-        <ExperienceCard />
+        {experiences?.map(experience=>(
+          <ExperienceCard key={experience._id} experience={experience} />
+        ))}
       </div>
     </motion.div>
   );
