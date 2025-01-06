@@ -27,8 +27,8 @@ export default function Skills({}: Props) {
       >
         Hover over a skill for currency proficiency
       </h3>
-
-      <div className="grid grid-cols-4 gap-5">
+    {/* 距离标题远一点 */}
+      <div className="grid grid-cols-4 gap-5 mt-32">
         <Skill />
         <Skill />
         <Skill />
