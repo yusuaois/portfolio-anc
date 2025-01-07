@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import React from "react";
 import { Experience } from "@/typings";
@@ -44,9 +43,8 @@ export default function ExperienceCard({ experience }: Props) {
             : new Date(experience.dateEnded).toDateString()}
         </p>
 
-        {/* 固定高度 */}
         <ul
-          className="list-disc space-y-4 ml-5 text-lg overflow-y-scroll
+          className="list-disc space-y-4 ml-5 text-lg overflow-y-scroll max-h-60
         pr-5 scrollbar-thin scrollbar-track-black scrollbar-thumb-[#F7AB0A]/80"
         >
           {experience.points?.map((point, i) => <li key={i}>{point}</li>)}

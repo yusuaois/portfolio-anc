@@ -1,4 +1,3 @@
-
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -63,12 +62,12 @@ export default async function Home() {
 
       {/* Footer */}
       <Link href="#hero">
-        <footer className="sticky bottom-5 w-full cursor-pointer">
+        <footer className="sticky bottom-5 w-fit mx-auto cursor-pointer z-10">
           <div className="flex items-center justify-center">
             <img
               className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0 cursor-pointer"
               src={Logo.src}
-              alt=""
+              alt="Logo"
             />
           </div>
         </footer>

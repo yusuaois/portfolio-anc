@@ -31,7 +31,7 @@ export default function Projects({ projects }: Props) {
           <div
             key={project._id}
             className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 
-          items-center justify-center p-20 md:p-44 h-screen"
+          items-center justify-center p-20  h-screen "
           >
             {/* Project Img */}
             <motion.img
