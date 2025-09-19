@@ -1,7 +1,7 @@
 interface SanityBody {
   _id: string;
   _rev: string;
-  _createAt: string;
+  _createdAt: string;
   _updatedAt: string;
 }
 

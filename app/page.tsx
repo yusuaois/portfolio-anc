@@ -15,11 +15,11 @@ import { fetchSkills } from "@/utils/fetchSkills";
 import { fetchSocials } from "@/utils/fetchSocials";
 
 export default async function Home() {
-  const pageInfo: PageInfo = await fetchPageInfos();
-  const experiences: Experience[] = await fetchExperiences();
-  const skills: Skill[] = await fetchSkills();
-  const projects: Project[] = await fetchProjects();
-  const socials: Social[] = await fetchSocials();
+  const pageInfo: PageInfo = await fetchPageInfos() as PageInfo;
+  const experiences: Experience[] = await fetchExperiences() as Experience[];
+  const skills: Skill[] = await fetchSkills() as Skill[];
+  const projects: Project[] = await fetchProjects() as Project[];
+  const socials: Social[] = await fetchSocials() as Social[];
 
   return (
     <div
