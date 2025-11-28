@@ -9,6 +9,10 @@ const query = groq`
   technologies[]->}`;
 
 export async function GET() {
-  const projects: Project[] = await sanityClient.fetch(query);
-  return NextResponse.json({ projects });
+  try {
+    const projects: Project[] = await sanityClient.fetch(query);
+    return NextResponse.json({ projects });
+  } catch (err) {
+    return NextResponse.json({ projects: [] });
+  }
 }

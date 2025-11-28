@@ -25,8 +25,8 @@ export default function ExperienceCard({ experience }: Props) {
         alt=""
       />
       <div className="px-0 md:px-10">
-        <h4 className="text-4xl font-light">STAFF of XIAOMI</h4>
-        <p className="font-bold text-2xl mt-1">XIAOMI</p>
+        <h4 className="text-4xl font-light">{experience.jobTitle} of {experience.company}</h4>
+        <p className="font-bold text-2xl mt-1">{experience.company}</p>
         <div className="flex space-x-2 my-2">
           {experience.technologies?.map((technology) => (
             <img

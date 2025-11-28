@@ -9,6 +9,14 @@ const query = groq`
   technologies[]->}`;
 
 export async function GET() {
-  const experiences: Experience[] = await sanityClient.fetch(query);
-  return NextResponse.json({ experiences });
+  try{
+    const experiences: Experience[] = await sanityClient.fetch(query);
+    return NextResponse.json({ experiences });
+  }
+  catch(err){
+    // 返回空数组以防止错误
+    return NextResponse.json({ experiences: [] });
+  }
+  // const experiences: Experience[] = await sanityClient.fetch(query);
+  // return NextResponse.json({ experiences });
 }

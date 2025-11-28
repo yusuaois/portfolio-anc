@@ -7,6 +7,10 @@ const query = groq`
 *[_type == "social"]`;
 
 export async function GET() {
-  const socials: Social[] = await sanityClient.fetch(query);
-  return NextResponse.json({ socials });
+  try {
+    const socials: Social[] = await sanityClient.fetch(query);
+    return NextResponse.json({ socials });
+  } catch (err) {
+    return NextResponse.json({ socials: [] });
+  }
 }

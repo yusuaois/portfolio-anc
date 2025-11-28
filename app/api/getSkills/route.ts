@@ -7,6 +7,10 @@ const query = groq`
 *[_type == "skill"]`;
 
 export async function GET() {
-  const skills: Skill[] = await sanityClient.fetch(query);
-  return NextResponse.json({ skills });
+  try {
+    const skills: Skill[] = await sanityClient.fetch(query);
+    return NextResponse.json({ skills });
+  } catch (err) {
+    return NextResponse.json({ skills: [] });
+  }
 }
