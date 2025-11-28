@@ -61,7 +61,7 @@ export default async function Home() {
       </section>
 
       {/* Footer */}
-      <Link href="#hero">
+      {/* <Link href="#hero">
         <footer className="sticky bottom-5 w-fit mx-auto cursor-pointer z-10">
           <div className="flex items-center justify-center">
             <img
@@ -71,7 +71,7 @@ export default async function Home() {
             />
           </div>
         </footer>
-      </Link>
+      </Link> */}
     </div>
   );
 }

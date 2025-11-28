@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
@@ -41,8 +41,8 @@ export default function Header({ socials }: Props) {
           />
         ))}
       </motion.div>
-      <Link href="#contact">
-        <motion.div
+      <Link href="#contact" passHref legacyBehavior>
+        <motion.a
           initial={{
             opacity: 0,
             x: 500,
@@ -63,12 +63,12 @@ export default function Header({ socials }: Props) {
             network="email"
             fgColor="gray"
             bgColor="transparent"
+            as="div" // 防止 SocialIcon 渲染 <a> 标签
           />
-
           <p className="uppercase hidden md:inline-flex text-sm text-gray-400">
             Get In Touch
           </p>
-        </motion.div>
+        </motion.a>
       </Link>
     </header>
   );
