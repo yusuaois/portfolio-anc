@@ -1,0 +1,31 @@
+# 依赖与构建产物（进入容器后再重新安装/构建）
+node_modules
+.next
+out
+
+# 版本控制与工具目录
+.git
+.gitignore
+.claude
+.vscode
+
+# 环境变量文件（不打包进镜像，构建期用 build arg 传入）
+.env
+.env.*
+
+# Docker / 编排文件本身
+Dockerfile
+.dockerignore
+compose.yaml
+docker-compose.yml
+docker-compose.*
+
+# 文档与日志
+README.md
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 类型声明缓存
+*.tsbuildinfo

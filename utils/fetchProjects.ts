@@ -1,14 +1,20 @@
+import { sanityClient } from "@/sanity/env";
+import { groq } from "next-sanity";
 import { Project } from "@/typings";
 
-export const fetchProjects = async () => {
-  
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/getProjects`
-    );
-    const data = await res.json();
+const query = groq`
+  *[_type == "project"]{
+    ...,
+    technologies[]->
+  }
+`;
 
-    const projects: Project[] = data.projects;
-
-    return projects;
-  
+export const fetchProjects = async (): Promise<Project[]> => {
+  try {
+    const projects: Project[] = await sanityClient.fetch(query);
+    return Array.isArray(projects) ? projects : [];
+  } catch (err) {
+    console.error("fetchProjects 失败，使用空数组兜底：", err);
+    return [];
+  }
 };

@@ -14,6 +14,11 @@ import { fetchProjects } from "@/utils/fetchProjects";
 import { fetchSkills } from "@/utils/fetchSkills";
 import { fetchSocials } from "@/utils/fetchSocials";
 
+// 静态生成（构建期预渲染，用户秒开）+ 按需再验证：
+// 平时不轮询；Sanity 发布内容时通过 webhook 回调 /api/revalidate 触发 revalidatePath("/")。
+// 配合 utils/fetch*.ts 里的 try/catch 兜底，构建期即使 Sanity 不可用也不会中断。
+export const revalidate = false;
+
 export default async function Home() {
   const pageInfo: PageInfo = await fetchPageInfos();
   const experiences: Experience[] = await fetchExperiences();

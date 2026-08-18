@@ -1,0 +1,20 @@
+services:
+  portfolio:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_SANITY_PROJECT_ID: "tulhd6kl"
+        NEXT_PUBLIC_SANITY_DATASET: "production"
+        NEXT_PUBLIC_SANITY_API_VERSION: "2025-01-06"
+    # 宿主机 3002 → 容器 3000
+    ports:
+      - "3002:3000"
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_SANITY_PROJECT_ID: "tulhd6kl"
+      NEXT_PUBLIC_SANITY_DATASET: "production"
+      NEXT_PUBLIC_SANITY_API_VERSION: "2025-01-06"
+      # 用于校验 Sanity webhook 回调（非 NEXT_PUBLIC_，运行时读取）。
+      # 在项目根目录新建 .env 文件写入：SANITY_REVALIDATE_SECRET=随机长串，并与 Sanity webhook 里的一致。
+      SANITY_REVALIDATE_SECRET: "${SANITY_REVALIDATE_SECRET}"
+    restart: unless-stopped

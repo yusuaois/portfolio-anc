@@ -1,15 +1,17 @@
+import { sanityClient } from "@/sanity/env";
+import { groq } from "next-sanity";
 import { Skill } from "@/typings";
 
-export const fetchSkills = async () => {
- 
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/getSkills`
-    );
+const query = groq`
+  *[_type == "skill"]
+`;
 
-    const data = await res.json();
-
-    const skills: Skill[] = data.skills;
-
-    return skills;
-  
+export const fetchSkills = async (): Promise<Skill[]> => {
+  try {
+    const skills: Skill[] = await sanityClient.fetch(query);
+    return Array.isArray(skills) ? skills : [];
+  } catch (err) {
+    console.error("fetchSkills 失败，使用空数组兜底：", err);
+    return [];
+  }
 };

@@ -1,13 +1,28 @@
+import { sanityClient } from "@/sanity/env";
+import { groq } from "next-sanity";
 import { PageInfo } from "@/typings";
 
-export const fetchPageInfos = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/getPageInfo`
-  );
+const query = groq`
+  *[_type == "pageInfo"][0]
+`;
 
-  const data = await res.json();
+// 兜底数据：Sanity 不可用（构建期无外网 / 运行期接口超时）时仍能正常渲染，避免中断
+const fallback = {
+  _type: "pageInfo",
+  address: "",
+  backgroundInformation: "",
+  phoneNumber: "",
+  email: "",
+  role: "",
+  name: "",
+} as PageInfo;
 
-  const pageInfo: PageInfo = data.pageInfo;
-
-  return pageInfo;
+export const fetchPageInfos = async (): Promise<PageInfo> => {
+  try {
+    const pageInfo: PageInfo | null = await sanityClient.fetch(query);
+    return pageInfo ?? fallback;
+  } catch (err) {
+    console.error("fetchPageInfos 失败，使用兜底数据：", err);
+    return fallback;
+  }
 };
