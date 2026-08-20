@@ -5,8 +5,6 @@ import WorkExperience from "@/components/WorkExperience";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import ContactMe from "@/components/ContactMe";
-import Link from "next/link";
-import Logo from "@/public/img/Logo.jpg";
 import { Experience, PageInfo, Project, Skill, Social } from "@/typings";
 import { fetchPageInfos } from "@/utils/fetchPageInfo";
 import { fetchExperiences } from "@/utils/fetchExperiences";
@@ -64,19 +62,6 @@ export default async function Home() {
       <section id="contact" className="snap-start">
         <ContactMe />
       </section>
-
-      {/* Footer */}
-      <Link href="#hero">
-        <footer className="sticky bottom-5 w-fit mx-auto cursor-pointer z-10">
-          <div className="flex items-center justify-center">
-            <img
-              className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0 cursor-pointer"
-              src={Logo.src}
-              alt="Logo"
-            />
-          </div>
-        </footer>
-      </Link>
     </div>
   );
 }

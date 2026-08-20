@@ -29,7 +29,7 @@ export default function Header({ socials }: Props) {
         transition={{
           duration: 1.5,
         }}
-        className="flex flex-row items-center"
+        className="flex flex-row items-center flex-wrap"
       >
         {/* Social Icons */}
         {socials.map((social) => (
