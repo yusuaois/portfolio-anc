@@ -1,0 +1,136 @@
+name: Docker Publish
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: docker-publish-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+  NEXT_PUBLIC_SANITY_PROJECT_ID: tulhd6kl
+  NEXT_PUBLIC_SANITY_DATASET: production
+  NEXT_PUBLIC_SANITY_API_VERSION: "2025-01-06"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      #   push master  → latest、sha-1bc666c
+      #   tag v1.2.3   → 1.2.3、1.2、1、sha-xxxxxxx
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha,prefix=sha-,format=short
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+          labels: |
+            org.opencontainers.image.title=portfolio-anc
+            org.opencontainers.image.description=个人作品集站点（Next.js 15 + Sanity）
+
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: portfolio-anc:smoke
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            NEXT_PUBLIC_SANITY_PROJECT_ID=${{ env.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+            NEXT_PUBLIC_SANITY_DATASET=${{ env.NEXT_PUBLIC_SANITY_DATASET }}
+            NEXT_PUBLIC_SANITY_API_VERSION=${{ env.NEXT_PUBLIC_SANITY_API_VERSION }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Smoke test (assert Sanity content was baked in)
+        run: |
+          set -euo pipefail
+
+          docker run -d --name smoke -p 3000:3000 \
+            -e SANITY_REVALIDATE_SECRET=smoke-test-not-a-real-secret \
+            portfolio-anc:smoke
+
+          for i in $(seq 1 30); do
+            if curl -sf -o /tmp/home.html http://localhost:3000/; then
+              echo "首页已响应（第 ${i} 次尝试）"
+              break
+            fi
+            sleep 2
+          done
+
+          if [ ! -s /tmp/home.html ]; then
+            echo "::error::容器启动后 60 秒内首页无响应"
+            docker logs smoke
+            exit 1
+          fi
+
+          # heroImage / profilePic 来自 Sanity；数据缺失时 sanity/env.ts 里的 urlFor 兜底
+          # 返回空字符串，页面上就不会出现 cdn.sanity.io。以此判断内容是否真的烤进去了。
+          if ! grep -q "cdn.sanity.io" /tmp/home.html; then
+            echo "::error::首页里没有 Sanity 图片链接 —— 构建期大概率没拉到数据，拒绝发布"
+            echo "--- 首页前 2000 字节 ---"
+            head -c 2000 /tmp/home.html
+            echo ""
+            echo "--- 容器日志 ---"
+            docker logs smoke
+            exit 1
+          fi
+
+          echo "冒烟测试通过：首页含 Sanity 内容"
+
+      - name: Tear down smoke container
+        if: always()
+        run: docker rm -f smoke || true
+
+      - name: Push to GHCR
+        run: |
+          set -euo pipefail
+          while IFS= read -r tag; do
+            [ -z "$tag" ] && continue
+            echo "推送 $tag"
+            docker tag portfolio-anc:smoke "$tag"
+            docker push "$tag"
+          done <<< "${{ steps.meta.outputs.tags }}"
+
+      - name: Summary
+        run: |
+          {
+            echo "### 已发布镜像"
+            echo ""
+            echo '```'
+            echo "${{ steps.meta.outputs.tags }}"
+            echo '```'
+            echo ""
+            echo "NAS 更新：\`docker compose -f compose.nas.yaml pull && docker compose -f compose.nas.yaml up -d\`"
+          } >> "$GITHUB_STEP_SUMMARY"
