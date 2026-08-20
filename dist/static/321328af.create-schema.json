@@ -1,0 +1,249 @@
+[
+  {
+    "fields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "role",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "heroImage",
+        "type": "image",
+        "title": "Image"
+      },
+      {
+        "name": "backgroundInformation",
+        "type": "string",
+        "title": "BackgroundInformation"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "profilePic",
+        "type": "image",
+        "title": "ProfilePic"
+      },
+      {
+        "name": "phoneNumber",
+        "type": "string",
+        "title": "PhoneNumber"
+      },
+      {
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "name": "address",
+        "type": "string"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "social"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to social"
+          }
+        ],
+        "name": "socials",
+        "type": "array"
+      }
+    ],
+    "name": "pageInfo",
+    "type": "document",
+    "title": "PageInfo"
+  },
+  {
+    "fields": [
+      {
+        "description": "The platform of the social media post",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "description": "The URL of the social media post",
+        "name": "url",
+        "type": "string",
+        "title": "URL"
+      }
+    ],
+    "name": "social",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "jobTitle",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "companyImage",
+        "type": "image"
+      },
+      {
+        "name": "company",
+        "type": "text"
+      },
+      {
+        "name": "dateStarted",
+        "type": "date",
+        "title": "DateStarted"
+      },
+      {
+        "name": "dateEnded",
+        "type": "date",
+        "title": "DateEnded"
+      },
+      {
+        "name": "isCurrentlyWorkingHere",
+        "type": "boolean",
+        "title": "IsCurrentlyWorkingHere"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "skill"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to skill"
+          }
+        ],
+        "name": "technologies",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "points",
+        "type": "array"
+      }
+    ],
+    "name": "experience",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      },
+      {
+        "description": "The title of the project",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "name": "summary",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "skill"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to skill"
+          }
+        ],
+        "name": "technologies",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "linkToBuild",
+        "type": "url",
+        "title": "LinkToBuild"
+      }
+    ],
+    "name": "project",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "description": "The title of the skill",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 0
+              },
+              {
+                "flag": "max",
+                "constraint": 100
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "The progress of the skill",
+        "name": "progress",
+        "type": "number"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image"
+      }
+    ],
+    "name": "skill",
+    "type": "document"
+  }
+]
