@@ -60,7 +60,7 @@ export default async function Home() {
 
       {/* Contact Me */}
       <section id="contact" className="snap-start">
-        <ContactMe />
+        <ContactMe pageInfo={pageInfo}/>
       </section>
     </div>
   );

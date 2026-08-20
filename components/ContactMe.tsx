@@ -3,7 +3,8 @@
 import React from "react";
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import {  SubmitHandler, useForm } from "react-hook-form";
-type Props = {};
+import { PageInfo } from "@/typings";
+type Props = { pageInfo: PageInfo };
 
 interface IFormInput {
   name: string;
@@ -12,7 +13,7 @@ interface IFormInput {
   message: string;
 }
 
-export default function ContactMe({}: Props) {
+export default function ContactMe({ pageInfo }: Props) {
   const { register, handleSubmit } = useForm<IFormInput>();
   const onSubmit: SubmitHandler<IFormInput> = (formData) => {
     window.location.href =
@@ -38,15 +39,15 @@ export default function ContactMe({}: Props) {
         <div className="space-y-10">
           <div className="flex items-center space-x-5 justify-center">
             <PhoneIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">+86 18302055087</p>
+            <p className="text-2xl">{pageInfo.phoneNumber}</p>
           </div>
           <div className="flex items-center space-x-5 justify-center">
             <EnvelopeIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">yusuaois@outlook.com</p>
+            <p className="text-2xl">{pageInfo.email}</p>
           </div>
           <div className="flex items-center space-x-5 justify-center">
             <MapPinIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">Guangzhou,China</p>
+            <p className="text-2xl">{pageInfo.address}</p>
           </div>
         </div>
 
