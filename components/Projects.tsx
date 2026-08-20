@@ -33,8 +33,6 @@ export default function Projects({ projects }: Props) {
             className="w-screen flex-shrink-0 snap-center flex flex-col space-y-3
           items-center justify-center px-5 py-10 sm:p-10 md:p-20"
           >
-            {/* Project Img：固定 16:9 盒子 + object-contain，任意比例/方向的图都等比缩放进盒子，
-                竖屏图居中、左右留白，不会把整页高度撑高 */}
             <div className="w-full max-w-[666px] aspect-video">
               <motion.img
                 initial={{ y: -300, opacity: 0 }}

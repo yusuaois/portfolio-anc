@@ -11,7 +11,7 @@ export const fetchSocials = async (): Promise<Social[]> => {
     const socials: Social[] = await sanityClient.fetch(query);
     return Array.isArray(socials) ? socials : [];
   } catch (err) {
-    console.error("fetchSocials 失败，使用空数组兜底：", err);
+    console.error("fetchSocials failed:", err);
     return [];
   }
 };

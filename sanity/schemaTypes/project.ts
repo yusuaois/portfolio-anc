@@ -8,6 +8,11 @@ export const project = defineType({
   icon: DocumentTextIcon,
   fields: [
     {
+      name: "order",
+      title: "Display Order",
+      type: "number",
+    },
+    {
       name: "title",
       title: "Title",
       description: "The title of the project",

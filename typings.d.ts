@@ -1,7 +1,7 @@
 interface SanityBody {
   _id: string;
   _rev: string;
-  _createAt: string;
+  _createdAt: string;
   _updatedAt: string;
 }
 
@@ -35,8 +35,8 @@ export interface Technology extends SanityBody {
 export interface Experience extends SanityBody {
   _type: "experience";
   company: string;
-  dateStarted: date;
-  dateEnded: date;
+  dateStarted: string;
+  dateEnded: string;
   companyImage: Image;
   points: string[];
   isCurrentlyWorkingHere: boolean;
@@ -53,6 +53,7 @@ export interface Skill extends SanityBody {
 
 export interface Project extends SanityBody {
   _type: "project";
+  order?: number;
   image: Image;
   summary: string;
   title: string;

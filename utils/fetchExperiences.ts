@@ -14,7 +14,7 @@ export const fetchExperiences = async (): Promise<Experience[]> => {
     const experiences: Experience[] = await sanityClient.fetch(query);
     return Array.isArray(experiences) ? experiences : [];
   } catch (err) {
-    console.error("fetchExperiences 失败，使用空数组兜底：", err);
+    console.error("fetchExperiences failed:", err);
     return [];
   }
 };

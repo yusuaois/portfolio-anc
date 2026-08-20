@@ -11,7 +11,7 @@ export const fetchSkills = async (): Promise<Skill[]> => {
     const skills: Skill[] = await sanityClient.fetch(query);
     return Array.isArray(skills) ? skills : [];
   } catch (err) {
-    console.error("fetchSkills 失败，使用空数组兜底：", err);
+    console.error("fetchSkills failed:", err);
     return [];
   }
 };
