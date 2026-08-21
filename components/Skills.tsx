@@ -13,27 +13,24 @@ export default function Skills({ skills }: Props) {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className="flex relative flex-col text-center md:text-left
-      xl:flex-row max-w-[2000px] xl:px-10 h-dvh justify-center
-      xl:space-y-0 mx-auto items-center"
+      className="flex relative flex-col text-center
+      max-w-[2000px] xl:px-10 h-dvh justify-start pt-20 md:pt-24
+      mx-auto items-center overflow-hidden"
     >
-      <h3
-        className="absolute top-24 uppercase tracking-[20px] 
-      text-gray-500 text-2xl"
-      >
-        Skills
-      </h3>
+      <div className="flex flex-col items-center space-y-2 flex-shrink-0">
+        <h3 className="uppercase tracking-[20px] text-gray-500 text-2xl">
+          Skills
+        </h3>
 
-      <h3
-        className="absolute top-36 uppercase tracking-[3px] 
-      text-gray-500 text-sm"
-      >
-        Hover over a skill for current proficiency
-      </h3>
+        <h3 className="uppercase tracking-[3px] text-gray-500 text-sm">
+          Hover over a skill for current proficiency
+        </h3>
+      </div>
 
       <div
-        className="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-5 md:grid-cols-5 lg:grid-cols-6 lg:gap-2 max-h-[calc(100dvh_-_15rem)] md:max-h-[550px] !mt-52 md:!mt-28
-        overflow-y-scroll scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80 px-5 md:px-10"
+        className="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-5 md:grid-cols-5 lg:grid-cols-6 lg:gap-2 
+        max-h-[calc(100dvh-240px)] overflow-y-scroll scrollbar-thin scrollbar-track-gray-400/20 
+        scrollbar-thumb-[#F7AB0A]/80 px-5 md:px-10 mt-4 md:mt-24"
       >
         {skills
           ?.slice(0, skills.length / 2)
