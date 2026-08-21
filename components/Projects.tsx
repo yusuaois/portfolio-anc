@@ -18,7 +18,7 @@ export default function Projects({ projects }: Props) {
       className="h-dvh relative flex overflow-hidden flex-col text-left
       max-w-full justify-start pt-20 md:pt-24 space-y-6 mx-auto items-center z-0"
     >
-      <h3 className="uppercase tracking-[20px] text-gray-500 text-2xl flex-shrink-0 text-center">
+      <h3 className="uppercase tracking-[20px] text-gray-500 text-2xl flex-shrink-0 text-center pl-[20px]">
         Projects
       </h3>
 

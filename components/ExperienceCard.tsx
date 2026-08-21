@@ -12,7 +12,7 @@ export default function ExperienceCard({ experience }: Props) {
     <article
       className="flex flex-col rounded-lg items-center space-y-2 md:space-y-4 flex-shrink-0
     w-[85vw] sm:w-[500px] md:w-[600px] xl:w-[900px] 
-    h-[450px] md:h-[550px] xl:h-[600px]
+    h-[440px] md:h-[550px] xl:h-[600px]
     snap-center bg-[#292929] p-5 md:p-10 hover:opacity-100
      opacity-40 cursor-pointer transition-opacity duration-200 
      overflow-y-auto scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80"

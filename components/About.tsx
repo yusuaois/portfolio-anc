@@ -15,7 +15,7 @@ export default function About({ pageInfo }: Props) {
       className="flex flex-col relative h-screen text-center md:text-left
         max-w-7xl px-5 md:px-10 justify-start pt-20 md:pt-24 mx-auto items-center"
     >
-      <h3 className="uppercase tracking-[20px] text-gray-500 text-2xl flex-shrink-0">
+      <h3 className="uppercase tracking-[20px] text-gray-500 text-2xl flex-shrink-0 text-center pl-[20px]">
         About
       </h3>
       <div className="flex flex-col md:flex-row items-center w-full mt-6 md:mt-16 space-y-4 md:space-y-0">

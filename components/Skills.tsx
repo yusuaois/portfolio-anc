@@ -18,7 +18,7 @@ export default function Skills({ skills }: Props) {
       mx-auto items-center overflow-hidden"
     >
       <div className="flex flex-col items-center space-y-2 flex-shrink-0">
-        <h3 className="uppercase tracking-[20px] text-gray-500 text-2xl">
+        <h3 className="uppercase tracking-[20px] text-gray-500 text-2xl flex-shrink-0 text-center pl-[20px]">
           Skills
         </h3>
 

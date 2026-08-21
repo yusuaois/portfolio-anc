@@ -24,7 +24,7 @@ export default function ContactMe({ pageInfo }: Props) {
       className="h-screen flex relative flex-col text-center md:text-left
     max-w-7xl px-5 md:px-10 justify-start pt-20 md:pt-24 mx-auto items-center"
     >
-      <h3 className="uppercase tracking-[20px] text-gray-500 text-2xl flex-shrink-0">
+      <h3 className="uppercase tracking-[20px] text-gray-500 text-2xl flex-shrink-0 text-center pl-[20px]">
         Contact
       </h3>
 
