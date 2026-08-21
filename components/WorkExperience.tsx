@@ -14,8 +14,8 @@ export default function WorkExperience({ experiences }: Props) {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className="h-screen flex relative overflow-hidden flex-col text-left
-      md:flex-row max-w-full px-5 md:px-10 justify-evenly mx-auto items-center"
+      className="h-dvh flex relative overflow-hidden flex-col text-left
+      md:flex-row max-w-full px-5 md:px-10 justify-evenly mx-auto items-center z-0"
     >
       <h3
         className="absolute top-24 uppercase tracking-[20px] text-gray-500 
@@ -25,15 +25,14 @@ export default function WorkExperience({ experiences }: Props) {
       </h3>
 
       <div
-  className={`w-full flex space-x-5 overflow-x-auto p-10 snap-x snap-mandatory 
-    scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80 mt-20
-    ${experiences?.length === 1 ? 'justify-center' : ''}`}
->
-  {experiences?.map((experience) => (
-    <ExperienceCard key={experience._id} experience={experience} />
-  ))}
-</div>
-
+        className="relative w-full flex space-x-5 overflow-x-scroll overflow-y-hidden snap-x snap-mandatory 
+        z-20 scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80 mt-20
+        px-[7.5vw] sm:px-[calc(50vw_-_250px)] md:px-[calc(50vw_-_300px)] xl:px-[calc(50vw_-_450px)]"
+      >
+        {experiences?.map((experience) => (
+          <ExperienceCard key={experience._id} experience={experience} />
+        ))}
+      </div>
     </motion.div>
   );
 }

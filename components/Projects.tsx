@@ -15,7 +15,7 @@ export default function Projects({ projects }: Props) {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className="h-screen relative flex overflow-hidden flex-col text-left
+      className="h-dvh relative flex overflow-hidden flex-col text-left
       md:flex-row max-w-full justify-evenly mx-auto items-center z-0"
     >
       <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
@@ -23,33 +23,28 @@ export default function Projects({ projects }: Props) {
       </h3>
 
       <div
-        className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x
-      snap-mandatory z-20 scrollbar-thin scrollbar-track-gray-400/20
-      scrollbar-thumb-[#F7AB0A]/80 mt-20"
+        className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory 
+        z-20 scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80 mt-20"
       >
         {projects?.map((project, i) => (
           <div
             key={project._id}
             className="w-screen flex-shrink-0 snap-center flex flex-col space-y-3
-          items-center justify-center px-5 py-10 sm:p-10 md:p-20"
+            items-center justify-center p-5 md:p-10"
           >
-            <div className="w-full max-w-[666px] aspect-video">
-              <motion.img
-                initial={{ y: -300, opacity: 0 }}
-                transition={{ duration: 1.2 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                className="w-full h-full object-contain"
-                src={urlFor(project?.image).width(666).url()}
-                alt=""
-              />
-            </div>
+            <motion.img
+              initial={{ y: -150, opacity: 0 }}
+              transition={{ duration: 1.2 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              src={urlFor(project?.image).width(653).url()}
+              alt=""
+            />
             <div className="space-y-5 md:space-y-10 px-0 md:px-10 max-w-6xl">
               <h4 className="text-3xl md:text-4xl font-semibold text-center">
                 <span className="underline decoration-[#F7AB0A]/50">
                   Case Study {i + 1} of {projects.length}:
                 </span>{" "}
-                {/* Project Title */}
                 {project?.title}
               </h4>
 
@@ -65,7 +60,6 @@ export default function Projects({ projects }: Props) {
               </div>
 
               <p className="text-base md:text-lg text-center md:text-left">
-                {/* Project Summary English*/}
                 {project?.summary}
               </p>
             </div>

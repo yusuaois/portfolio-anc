@@ -13,8 +13,8 @@ export default function Skills({ skills }: Props) {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className="flex relative flex-col text-center md:text-left 
-      xl:flex-row max-w-[2000px] xl:px-10 h-screen justify-center 
+      className="flex relative flex-col text-center md:text-left
+      xl:flex-row max-w-[2000px] xl:px-10 h-dvh justify-center
       xl:space-y-0 mx-auto items-center"
     >
       <h3
@@ -32,7 +32,7 @@ export default function Skills({ skills }: Props) {
       </h3>
 
       <div
-        className="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-5 md:grid-cols-5 lg:grid-cols-6 lg:gap-2 max-h-[550px] !mt-28
+        className="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-5 md:grid-cols-5 lg:grid-cols-6 lg:gap-2 max-h-[calc(100dvh_-_15rem)] md:max-h-[550px] !mt-52 md:!mt-28
         overflow-y-scroll scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80 px-5 md:px-10"
       >
         {skills
