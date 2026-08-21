@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Social } from "@/typings";
 
+const MotionLink = motion.create(Link);
+
 type Props = {
   socials: Social[];
 };
@@ -41,23 +43,21 @@ export default function Header({ socials }: Props) {
           />
         ))}
       </motion.div>
-      <Link href="#contact" passHref legacyBehavior>
-        <motion.a
-          initial={{
-            opacity: 0,
-            x: 500,
-            scale: 0.5,
-          }}
-          animate={{
-            opacity: 1,
-            x: 0,
-            scale: 1,
-          }}
-          transition={{
-            duration: 1.5,
-          }}
-          className="flex flex-row items-center text-gray-300 cursor-pointer"
-        >
+      <MotionLink
+        href="#contact"
+        initial={{
+          x: 500,
+          opacity: 0,
+          scale: 0.5,
+        }}
+        animate={{
+          x: 0,
+          opacity: 1,
+          scale: 1,
+        }}
+        transition={{ duration: 1.5 }}
+        className="flex flex-row items-center text-gray-300 cursor-pointer"
+      >
           <SocialIcon
             className="cursor-pointer"
             network="email"
@@ -68,8 +68,7 @@ export default function Header({ socials }: Props) {
           <p className="uppercase hidden md:inline-flex text-sm text-gray-400">
             Get In Touch
           </p>
-        </motion.a>
-      </Link>
+        </MotionLink>
     </header>
   );
 }
