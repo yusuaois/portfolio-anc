@@ -20,7 +20,7 @@
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^6.10.1",
     "framer-motion": "^11.15.0",
-    "next": "^16.3.3",
+    "next": "^16.4.2",
     "next-sanity": "^13.3.3",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
